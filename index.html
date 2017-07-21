@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+    <script src="js/moveFrame.js"></script>
+    <link href="css/index.css" type="text/css" rel="stylesheet">
+    <script>
+        window.onload=function(){
+            var oDiv=document.getElementById('box');
+            var aImg=oDiv.getElementsByTagName('img');
+
+            aImg[0].onmouseover=function(){
+                aImg[0].src='image/062.jpg';
+                aImg[0].style.opacity='1';
+            };
+            aImg[0].onmouseout=function(){
+                aImg[0].src='image/065.jpg';
+                aImg[0].style.opacity='0.5';
+            };
+
+            aImg[1].onmouseover=function(){
+                aImg[1].src='image/063.jpg';
+                aImg[1].style.opacity='1';
+            }
+            aImg[1].onmouseout=function(){
+                aImg[1].src='image/066.jpg';
+                aImg[1].style.opacity='0.5';
+            }
+        };
+    </script>
+</head>
+<body>
+    <div class="main">
+        <div class="logo"><img src="image/064.jpg"></div>
+            <div class="box" id="box">
+                <a href="S_index.html"><div class="box01"><img src="image/065.jpg"></div></a>
+                <a href="C_index.html"><div class="box02"><img src="image/066.jpg"></div></a>
+            </div>
+        <div class="div01">—高薪就业无忧—</div>
+        <div class="div02">—企业技术支持—</div>
+        <div class="div03">西部开源中心</div>
+    </div>
+</body>
+</html>

@@ -1,0 +1,342 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+    <script src="js/moveFrame.js"></script>
+    <link href="css/head.css" type="text/css" rel="stylesheet">
+    <link href="css/footer.css" type="text/css" rel="stylesheet">
+    <link href="css/register.css" type="text/css" rel="stylesheet">
+    <script>
+        window.onload=function(){
+            /*侧边栏动画*/
+            var oBarLeft=document.getElementById('sidebarleft');
+            var oBarright=document.getElementById('sidebarright');
+            var aDiv=oBarLeft.getElementsByTagName('div');
+            var aImg01=oBarright.getElementsByTagName('img');
+
+            for(var i=0;i<aDiv.length;i++){
+                aImg01[i].indenx=i;
+                aImg01[i].onmouseover=function(){
+                    aDiv[this.indenx].style.display='block';
+                };
+                aImg01[i].onmouseout=function(){
+                    aDiv[this.indenx].style.display='none';
+                };
+            }
+            var flag=true;
+            aImg01[3].onclick=function(){
+                if(flag){
+                    aImg01[0].style.display='none';
+                    aImg01[1].style.display='none';
+                    aImg01[2].style.display='none';
+                    flag=false;
+
+                }else{
+                    aImg01[0].style.display='block';
+                    aImg01[1].style.display='block';
+                    aImg01[2].style.display='block';
+                    flag=true;
+                }
+            };
+
+
+
+            /*协议部分开始*/
+//            var oBox=document.getElementById('box');
+//            var oInner=document.getElementById('inner');
+//            var oCp=document.getElementById('mainP');
+//
+//
+//            oInner.onmousedown=function(ev) {
+//                var oEvent1=ev||event;
+//                var newLeft=oEvent1.clientX-oInner.offsetLeft;
+//                var newTop=oEvent1.clientY-oInner.offsetTop;
+//                oBox.onmousemove=function(ev) {
+//                    var oEvent=ev||event;
+//
+//                    var t=oEvent.clientY-newTop;
+//                    if(t<0){
+//                        t=0;
+//                    }else if(t>oBox.offsetHeight-oInner.offsetHeight){
+//                        t=oBox.offsetHeight-oInner.offsetHeight;
+//                    }
+//                    if(oEvent.clientX-oEvent1.clientX >0 && oInner.offsetLeft<oBox.offsetWidth-oInner.offsetWidth) {
+//                        gsStyle(oCp, 'top', parseInt(gsStyle(oImg, 'width')) +(1)+ 'px');
+//                    } else if(oEvent.clientX-oEvent1.clientX<0 && oInner.offsetLeft>0)
+//                    {
+//                        gsStyle(oCp, 'top', parseInt(gsStyle(oImg, 'width')) -(1) + 'px');
+//                    }
+//
+//
+//
+//
+////                    oInner.style.left=l+'px';
+//                    oInner.style.top=t+'px';
+//                    oCp.style.marginTop=-t+'px';
+//
+//                }
+//                oBox.onmouseup=function(){
+//                    oBox.onmousemove=null;
+//                    oBox.onmouseup=null;
+//                }
+//                return false;
+//            }
+
+
+
+
+
+
+
+
+            var oBox=document.getElementById('box');
+            var oInner=document.getElementById('inner');
+            var oConDiv=document.getElementById('content');
+            var oCp=document.getElementById('mainP');
+            var Read=document.getElementById('read');
+
+            var start=oInner.offsetTop;
+            var BoxHeight=oBox.offsetHeight;
+            var InnerHeight=oInner.offsetHeight;
+            var ContentHeight=oConDiv.offsetHeight;
+            var CPHeight=oCp.offsetHeight;
+            var m=(CPHeight-ContentHeight)/(BoxHeight-InnerHeight);
+            //alert(m);
+
+            oInner.onmousedown=function(ev){
+                var oEvent1=ev||event;
+                var n=oEvent1.clientY-parseInt(oInner.offsetTop);
+                oInner.onmousemove=function(ev){
+                    var oEvent=ev||event;
+                    var top=oEvent.clientY-n;
+                    if(top<start){
+                        top=start;
+                    }else if(top>start+BoxHeight-InnerHeight){
+                        top=start+BoxHeight-InnerHeight;
+                    }
+                    oInner.style.top=top+'px';
+                    oCp.style.marginTop=(-(top-start)*m)+'px';
+
+
+                    if(oInner.offsetTop-start>=BoxHeight-InnerHeight){
+                        Read.checked=true;
+                        Read.disabled=false;
+
+
+                    }else{
+                        Read.disabled=true;
+                    }
+                }
+                oInner.onmouseup=function(){
+                    oInner.onmousemove=null;
+                    oInner.onmouseup=null;
+                }
+                return false;
+            }
+        };
+    </script>
+</head>
+<body>
+<!--头部开始-->
+<div class="head">
+    <div class="h-info">
+        <img src="image/026.jpg" />
+        <span class="h-text01">客服热线：4000-000-000</span>
+        <img src="image/055.jpg"  class="h-img01" />
+        <span class="h-text02">关注我们</span>
+        <img src="image/027.jpg" class="h-img02" />
+        <img src="image/028.jpg" class="h-img03" />
+    </div>
+    <div class="h-text">您好！欢迎来到西部开源技术中心&nbsp;&nbsp;|&nbsp;&nbsp;帮助中心</div>
+</div>
+<div class="title">
+    <div class="t-left">
+        <img src="image/022.jpg">
+    </div>
+    <div class="t-text">
+        享受开源 体验自由
+    </div>
+    <div class="t-right">
+        <div class="t-right01" >
+            <div><img src="image/023.jpg"></div>
+            舒适的教学环境
+        </div>
+        <div class="t-right02" >
+            <div><img src="image/024.jpg"></div>
+            强大的师资力量
+        </div>
+        <div class="t-right03" >
+            <div><img src="image/025.jpg"></div>
+            丰富的办学经验
+        </div>
+    </div>
+</div>
+<!--头部结束-->
+<!--导航栏开始-->
+<div class="nav">
+    <div class="nav-L">
+        <ul>
+            <li>
+                <a href="S_index.html">首&nbsp;&nbsp;页</a>
+                <i class="nav-b"></i>
+            </li>
+            <li>
+                <a href="aboutKY.html">关于开源</a>
+                <i class="nav-b"></i>
+            </li>
+            <li>
+                <a href="education.html">教育培训</a>
+                <i class="nav-b"></i>
+            </li>
+            <li>
+                <a href="#">学习视频</a>
+                <i class="nav-b"></i>
+            </li>
+            <li>
+                <a href="#">就业招聘</a>
+                <i class="nav-b"></i>
+            </li>
+            <li>
+                <a href="#">考务系统</a>
+                <i class="nav-b"></i>
+            </li>
+            <li>
+                <a href="Bsupport.html">企业技术支持</a>
+                <i class="nav-b"></i>
+            </li>
+            <li>
+                <a href="contact.html">联系我们</a>
+                <i class="nav-b"></i>
+            </li>
+        </ul>
+    </div>
+    <div class="nav-R">
+        <input type="text" id="tex">
+        <input type="button" value="GO" id="btn">
+    </div>
+</div>
+<!--导航栏结束-->
+<!--主体部分开始-->
+<div class="main">
+    <div class="main-title">
+        <p>注册账号</p>
+    </div>
+    <div class="main-left">
+        <form>
+            <label for="email_mob">邮箱/手机注册</label>
+            <input type="text" id="email_mob" name="email_mob" class="txt" >
+
+            <label for="User">昵称</label>
+            <input type="text" id="User" name="User" class="txt">
+
+            <label for="pwd">密码</label>
+            <input type="password" id="pwd" name="pwd" class="txt">
+
+            <label for="chkpwd">确认密码</label>
+            <input type="password" id="chkpwd" name="chkpwd" class="txt">
+
+            <label for="valid">验证码</label>
+            <input type="text" id="valid" name="valid" class="txt"><div id="valid_img"></div>
+
+
+            <label for="phone">手机号</label>
+            <input type="text" id="phone" name="phone" class="txt">
+
+            <label for="messnum" class="forget">忘记密码时可以通过该手机号找回密码</label>
+            <label ></label>
+            <input type="text" id="messnum" name="messnum" class="txt">
+            <input type="button" id="mess" name="mess" value="获取短信验证码">
+
+            <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+                &nbsp;&nbsp;&nbsp;
+                <input type="checkbox" id="read" name="read" disabled="disabled">我已阅读并同意相关服务条款和隐私政策
+
+
+            <input type="submit" id="submit" name="submit" value="点击注册">
+        </form>
+    </div>
+    <div class="main-right">
+        <div class="content" id="content">
+            <div id="mainP">
+                <p>开始</p>
+                <p>浏览器使用 method 属性设置的方法将表单中的数据传送给服务器进行处理。
+                    共有两种方法：POST 方法和 GET 方法。</p>
+                <p>浏览器使用 method 属性设置的方法将表单中的数据传送给服务器进行处理。
+                    共有两种方法：POST 方法和 GET 方法。</p>
+                <p>浏览器使用 method 属性设置的方法将表单中的数据传送给服务器进行处理。
+                    共有两种方法：POST 方法和 GET 方法。</p>
+                <p>服务条款</p>
+                <p>浏览器使用 method 属性设置的方法将表单中的数据传送给服务器进行处理。
+                    共有两种方法：POST 方法和 GET 方法。</p>
+                <p>如果采用 POST 方法，浏览器将会按照下面两步来发送数据。首先，浏览器将与
+                    action 属性中指定的表单处理服务器建立联系，一旦建立连接之后，浏览器就会
+                    按分段传输的方法将数据发送给服务器。</p>
+                <p>如果采用 POST 方法，浏览器将会按照下面两步来发送数据。首先，浏览器将与
+                    action 属性中指定的表单处理服务器建立联系，一旦建立连接之后，浏览器就会
+                    按分段传输的方法将数据发送给服务器。</p>
+                <p>如果采用 POST 方法，浏览器将会按照下面两步来发送数据。首先，浏览器将与
+                    action 属性中指定的表单处理服务器建立联系，一旦建立连接之后，浏览器就会
+                    按分段传输的方法将数据发送给服务器。</p>
+                <p>结束</p>
+            </div>
+        </div>
+        <div class="big-box">
+            <div class="box" id="box">
+                <div class="inner" id="inner">
+
+                </div>
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+<!--主体部分结束-->
+<!--尾部开始-->
+<div class="foot_nav" style="margin-top: 10px">
+    <div class="f_navL">
+        <ul>
+            <li>合作企业</li>
+            <li>百度中国</li>
+            <li>搜狐中国</li>
+            <li>小米国际</li>
+            <li>阿里巴巴</li>
+            <li>华为国际</li>
+            <li>天猫国际</li>
+            <li>京东商场</li>
+        </ul>
+    </div>
+    <div class="f_navR">更多合作企业></div>
+</div>
+<div class="footer">
+    <div class="foot-box">
+        <div class="foot-img01"><img src="image/058.jpg"></div>
+        <div class="foot-txt" >
+            <p>关于开源 | 教育培训 | 学习视频 | 企业技术支持</p>
+            <p>地址：西安太白南路181号西部电子社区A座C区506室  联系电话：029-86699937 邮箱：westos@vip.com</p>
+            <p>Copyright ©2015 西部开源技术中心 www.westos.org.All Rights Reserved.陕ICP备11026152号-13 </p>
+        </div>
+        <div class="foot-img02"><img src="image/059.jpg"></div>
+    </div>
+</div>
+<!--尾部结束-->
+<!--右侧浮动栏开始-->
+<div class="sidebar" id="sidebar">
+    <div class="sidebar-left" id="sidebarleft">
+        <div class="sidebar-txt01">QQ在线客服</div>
+        <div class="sidebar-txt02">电话在线客服</div>
+        <div class="sidebar-txt03">微信在线</div>
+    </div>
+    <div class="sidebar-right" id="sidebarright">
+        <img src="image/06.jpg" />
+        <img src="image/07.jpg" />
+        <img src="image/08.jpg" />
+        <img src="image/09.jpg" />
+    </div>
+</div>
+<!--右侧浮动栏结束-->
+</body>
+</html>
